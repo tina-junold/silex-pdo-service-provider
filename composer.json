@@ -1,0 +1,26 @@
+{
+  "name": "ipc/silex-pdo-service-provider",
+  "description": "A silex service provider which provides a pdo connection",
+  "keywords": [
+    "silex",
+    "pimple",
+    "pdo"
+  ],
+  "homepage": "https://github.com/tburschka/silex-pdo-service-provider",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Torsten Burschka",
+      "email": "torsten.burschka@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "pimple/pimple": "~3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "IPC\\Silex\\": "src"
+    }
+  }
+}
