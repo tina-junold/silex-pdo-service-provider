@@ -16,15 +16,23 @@ class PDOServiceProvider implements ServiceProviderInterface
     public function register(Container $app)
     {
         $app['pdo.default_options'] = [
-            'dsn'      => '',
-            'username' => '',
-            'password' => null,
-            'options'  => []
+            'dsn'        => '',
+            'username'   => '',
+            'password'   => null,
+            'options'    => [],
+            'attributes' => [],
         ];
 
         $app['pdo.connection'] = function ($app) {
             $options =  $app['pdo.options'];
-            return new \PDO($options['dsn'], $options['username'], $options['password'], $options['options']);
+            $pdo = new \PDO($options['dsn'], $options['username'], $options['password'], $options['options']);
+
+            if (isset($options['attributes']) && !empty($options['attributes'])) {
+                foreach ($options['attributes'] as $attribute => $value) {
+                    $pdo->setAttribute($attribute, $value);
+                }
+            }
+            return $pdo;
         };
     }
 }
